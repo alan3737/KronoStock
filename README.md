@@ -1,5 +1,5 @@
 # KronoStock
-
+Have you ever wanted to buy something but its always out of stock. You have come to the right place to learn about the product and buy it instantly when its available.
 # git flow
 
 main (or master): Represents the production-ready state. Only contains tagged release versions.
