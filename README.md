@@ -8,6 +8,6 @@ feature/<feature-name>: Short-lived branches branched off develop to develop spe
 release/<version>: Short-lived branches branched off develop to prepare for a new release. Bug fixes and final tweaks happen here. Once ready, it's merged into both main (tagged with the release version) and develop.
 hotfix/<version>: Short-lived branches branched off main to quickly fix critical bugs in the production version. Once fixed, it's merged into both main (tagged with the hotfix version) and develop.
 
-#MVP
+# MVP
 
-#TODO
+# TODO
