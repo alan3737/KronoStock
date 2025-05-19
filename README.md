@@ -19,12 +19,19 @@ Have you ever wanted to buy something but its always out of stock. You have come
 # MVP
 - display a list of sources and whether they are in stock
 - search functionality to search for the item
-- chart that display when it was previously in stock
+- display last time item is available
+- notification when in stock
+- item has a lower price
 # Additional
 - Bot that buys the item
 - top most popular items
+- chart that display when it was previously in stock
+- save favorite items
+- create and login to account
+- sort by company or category
 -----------------------------------------------------------------------------
 # Tech Stack
 - React
 - Nodejs
-- 
+- postgresql
+- aws
