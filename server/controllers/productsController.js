@@ -1,10 +1,12 @@
-<<<<<<< HEAD
-export function getKeyWordProductFromAllCompanies(req, res) {
+import * as db from '../db/queries.js'
+
+export function getTopTwentyProducts(req, res) {
     
     console.log("getting product");
+
+    //query to get all the products
+    //return the status/price of each item to frontend
 }
-=======
-import * as db from '../db/queries.js'
 
 export async function getKeyWordProductFromAllCompanies(req, res) { //Returns an array with each indices containing an array that contains all of the products with the same name. For example, [[switch (eBay), switch (bestBuy)], [sweets (eBay), sweets (bestBuy)]]
     try {
@@ -28,4 +30,7 @@ export async function getKeyWordProductFromAllCompanies(req, res) { //Returns an
     }
 }
 
->>>>>>> a9a33d8fc5b46465db50749da6defda717666589
+
+//query to get all the items
+//query to get all the sellers
+//for each companies get their product info
