@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
-router.get('/:productName', productsController.getProductFromAllCompanies);
+router.get('/:productName', productsController.getKeyWordProductFromAllCompanies);
 
 export default router;
 

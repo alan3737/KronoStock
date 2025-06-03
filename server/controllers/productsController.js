@@ -1,4 +1,4 @@
-export function getProductFromAllCompanies(req, res) {
+export function getKeyWordProductFromAllCompanies(req, res) {
     
     console.log("getting product");
 }
