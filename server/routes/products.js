@@ -6,8 +6,7 @@ const router = express.Router();
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
-
-router.get('/:productName', productsController.getKeyWordProductFromAllCompanies);
+router.get('/search/:productName', productsController.getKeyWordProductFromAllCompanies);
 
 export default router;
 
