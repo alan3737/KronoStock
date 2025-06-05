@@ -2,8 +2,8 @@ import * as db from '../db/queries.js'
 
 export async function getKeyWordProductInSearch(req, res) {
     try {
-        const dataRows = await db.getAllProductsThatStartWithKeyword(req.params.productName.toLowerCase());
-        res.json(dataRows); 
+        const productArray = await db.getAllProductsThatStartWithKeyword(req.params.productName);
+        res.json(productArray); 
     }
     catch(err){
         console.error(err)
