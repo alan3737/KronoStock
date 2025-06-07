@@ -20,10 +20,11 @@ const SQL = `
         id SERIAL PRIMARY KEY,
         product_id INTEGER REFERENCES products(id),
         company_id INTEGER REFERENCES companies(id),
+        category_id STRING,
+        epid STRING,
         price DECIMAL(10, 2),
         availibility BOOLEAN,
         url TEXT,
-        sku TEXT,
         time_updated TIMESTAMP DEFAULT NOW()
     );
 
