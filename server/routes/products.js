@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/:id', productsController.getProductDetails)
 
-router.get('/search/top', productsController.getTopProducts)
+router.get('/top', productsController.getTopProducts)
 
 router.get('/search/:productName', productsController.getKeyWordProductFromAllCompanies);
 
