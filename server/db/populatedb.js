@@ -23,7 +23,7 @@ const SQL = `
         category_id TEXT,
         epid TEXT,
         price DECIMAL(10, 2),
-        availibility BOOLEAN,
+        availability BOOLEAN,
         url TEXT,
         time_updated TIMESTAMP DEFAULT NOW()
     );
