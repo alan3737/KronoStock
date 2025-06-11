@@ -33,7 +33,7 @@ async function getEbayToken(){
 
 async function updateProductsFromCompany(companyName, demand){
     const lowerCaseCompanyName = companyName.toLowerCase();
-    if(lowerCaseCompanyName=== "ebay"){
+    if(lowerCaseCompanyName === "ebay"){
             let prodArray;
             let token;
             try{
@@ -52,7 +52,7 @@ async function updateProductsFromCompany(companyName, demand){
             }
             for(let i = 0; i < prodArray.length; i++){
                 try{
-                    const result = await fetch(`https://api.ebay.com/buy/browse/v1/item_summary/search?q=${prodArray[i].product_name}&category_ids=${prodArray[i].category_id}&epid=${prodArray[i].epid}`, {
+                    const result = await fetch(`https://api.ebay.com/buy/browse/v1/item_summary/search?q=${encodeURIComponent(prodArray[i].product_name)}&category_ids=${prodArray[i].category_id}&epid=${prodArray[i].epid}&limit=10`, {
                         method: "GET",
                         headers: {
                             'Authorization': `Bearer ${token}`
