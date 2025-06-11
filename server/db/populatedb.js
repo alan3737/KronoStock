@@ -7,6 +7,9 @@ const SQL = `
         id SERIAL PRIMARY KEY,
         product_name TEXT,
         product_image TEXT,
+        demand TEXT,
+        category_id TEXT,
+        epid TEXT,
         time_added TIMESTAMP DEFAULT NOW()
     );
 
@@ -20,8 +23,6 @@ const SQL = `
         id SERIAL PRIMARY KEY,
         product_id INTEGER REFERENCES products(id),
         company_id INTEGER REFERENCES companies(id),
-        category_id TEXT,
-        epid TEXT,
         price DECIMAL(10, 2),
         availability BOOLEAN,
         url TEXT,
