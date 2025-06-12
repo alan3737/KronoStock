@@ -61,6 +61,7 @@ async function updateProductsFromCompany(companyName, demand){
                     const resultJSON = await result.json();
                     const item_summary = resultJSON.itemSummaries || [];
                     if(item_summary.length === 0){
+                        await db.updateProductAvailability(prodArray[i].id, false);
                         continue;
                     }
                     let outOfStock = 0;
@@ -75,13 +76,13 @@ async function updateProductsFromCompany(companyName, demand){
                             })
                             const item_data = await item_response.json();
                             const newPrice = parseFloat(item_data.price.value)
-                            if(item_data.estimatedAvailabilities.estimatedAvailabilityStatus === 'IN_STOCK' && prodArray[i].availability){
+                            if(item_data.estimatedAvailabilities[0].estimatedAvailabilityStatus === 'IN_STOCK' && prodArray[i].availability){
                                 if(prodArray[i].price !== newPrice){
                                     await db.updateProductPrice(prodArray[i].id, newPrice);
                                 }
                                 break;
                             }
-                            else if(item_data.estimatedAvailabilities.estimatedAvailabilityStatus === 'IN_STOCK' && !prodArray[i].availability){
+                            else if(item_data.estimatedAvailabilities[0].estimatedAvailabilityStatus === 'IN_STOCK' && !prodArray[i].availability){
                                 await db.updateProductPriceAndAvailability(prodArray[i].id, newPrice, true);
                                 break;
                             }
@@ -103,3 +104,4 @@ async function updateProductsFromCompany(companyName, demand){
             }
     }
 }
+updateProductsFromCompany('ebay', 'medium');
