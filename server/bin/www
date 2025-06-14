@@ -94,5 +94,4 @@ function onListening() {
   debug('Listening on ' + bind);
   console.log("calling scheduler");
   scheduler.startScheduler();
-
 }

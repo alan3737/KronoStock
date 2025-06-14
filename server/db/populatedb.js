@@ -14,7 +14,10 @@ const SQL = `
     CREATE TABLE IF NOT EXISTS products (
         id SERIAL PRIMARY KEY,
         product_name TEXT,
-        product_image_url TEXT,
+        product_image TEXT,
+        demand TEXT,
+        category_id TEXT,
+        epid TEXT,
         time_added TIMESTAMP DEFAULT NOW()
     );
 

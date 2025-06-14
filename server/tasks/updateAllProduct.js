@@ -8,13 +8,19 @@ export function startScheduler() {
     });
 }
 
-
 async function getProductsToMonitor() {
     
 }
 
-async function updateAllProduct(listingsData) {
-    
+async function updateAllProduct(companies) {
+    const products = await getProductsToMonitor();
+    let listingData = [];
+    companies.array.forEach(async element => {
+        listingData.concat(await element(products));
+    });
+
+    const count = await db.updateListings(listingsData);
 }
 
-//
+
+[{listing_id, availablility, price}]
