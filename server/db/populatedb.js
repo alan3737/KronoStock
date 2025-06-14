@@ -31,7 +31,6 @@ const SQL = `
         price DECIMAL(10, 2),
         availability BOOLEAN,
         url TEXT,
-        sku TEXT,
         time_updated TIMESTAMP DEFAULT NOW()
     );
 
