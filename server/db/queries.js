@@ -5,14 +5,14 @@ export async function getAllProductsThatStartWithKeyword(keyword){
     return result.rows;
 }
 
-
+//all unique products and where they are available
 export async function getTopProducts(count) {
-    const result = await pool.query("SELECT p.id , p.name, p.image_url as url, l.availability, l.price FROM listing l JOIN products p ON listing.product_id = product.id where availability = 'IN_STOCK' ORDER BY listing.add_time DESC LIMIT $1", [count]);
+    const result = await pool.query("SELECT p.id , p.product_name, p.product_image_url as url, EXISTS(SELECT 1 FROM listings l where l.product_id = p.id and availability = true) as availabilitys FROM products p ORDER BY p.time_added DESC LIMIT $1", [count]);
     return result.rows;
 }
 
 //todo: include a mapping helper function to return consistent format
 export async function getProductDetails(id) {
-    const result = await pool.query("SELECT p.id as productID, p.name as productName, p.image_url as productImageUrl, c.id as companyID, c.name as companyName, c.logo_url as companyLogoUrl, l.url as listingUrl, l.last_available as lastAvailable, l.price, l.availability, l.id as listingID  FROM listings l JOIN products p ON l.product_id = p.id JOIN companies c on l.company_id = c.id where l.product_id = $1", [id]);
+    const result = await pool.query("SELECT p.id as product_id, p.product_name, p.product_image_url, c.id as company_id, c.company_name, c.company_logo_url, l.url as listing_url, l.time_updated, l.price, l.availability, l.id as listing_id FROM listings l JOIN products p ON l.product_id = p.id JOIN companies c on l.company_id = c.id where l.product_id = $1", [id]);
     return result.rows;
 }

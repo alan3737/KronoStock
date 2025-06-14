@@ -9,6 +9,9 @@ import app from '../app.js';
 import Debug from 'debug';
 import http from 'http';
 
+import * as scheduler from '../tasks/updateAllProduct.js';
+
+
 const debug = Debug('server:server');
 /**
  * Get port from environment and store in Express.
@@ -89,4 +92,7 @@ function onListening() {
     ? 'pipe ' + addr
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
+  console.log("calling scheduler");
+  scheduler.startScheduler();
+
 }

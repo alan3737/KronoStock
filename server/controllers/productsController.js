@@ -22,13 +22,13 @@ export async function getTopProducts(req, res) {
 }
 
 /** 
- * Returns the historical prices of the product
+ * Returns the details of a product given id
  * @param {*} req - {id}
  * @param {*} res - 
 */
 export async function getProductDetails(req, res) {
     try {
-        const {id} = res.params;
+        const {id} = req.params;
         if (!id) {
             return res.status(400).send("id not found");
         }
@@ -36,25 +36,27 @@ export async function getProductDetails(req, res) {
         if (!productDetails ||  productDetails.length === 0) {
             return res.status(400).send("id not found");
         }
+        console.log(productDetails);
         const mainProductDetails = {
-            listingID: productDetails[0].listingID,
-            productID: productDetails[0].productID,
-            productName: productDetails[0].productName,
-            productImageUrl: productDetails[0].productImageUrl,
+            listingID: productDetails[0].listing_id,
+            productID: productDetails[0].product_id,
+            productName: productDetails[0].product_name,
+            productImageUrl: productDetails[0].product_image_url,
         };
         const companyListings = productDetails.map((row) => ({
-                companyID: row.companyID,
-                companyName: row.companyName,
-                companyLogoUrl: row.companyLogoUrl,
-                listingUrl: row.listingUrl,
+                companyID: row.company_id,
+                companyName: row.company_name,
+                companyLogoUrl: row.company_logo_url,
+                listingUrl: row.listing_url,
                 lastPrice: row.price,
-                lastAvailable: row.lastAvailable,
+                timeUpdated: row.time_updated,
                 availability: row.availability
         }));
         const apiResponseProductDetails = {
             ... mainProductDetails,
             companyDetails: companyListings
         }
+        console.log(apiResponseProductDetails);
         res.status(200).json(apiResponseProductDetails);
     }
     catch(err) {
@@ -101,8 +103,3 @@ export async function getKeyWordProductInSearch(req, res) {
         res.status(500).send("Server Error");
     }
 }
-
-
-//query to get all the items
-//query to get all the sellers
-//for each companies get their product info
