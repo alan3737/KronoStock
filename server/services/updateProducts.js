@@ -51,7 +51,7 @@ async function getEbayData(productArray){
             });
             const resultJSON = await result.json();
             const item_summary = resultJSON.itemSummaries || [];
-            let outOfStock = true;
+            let outOfStock = 0;
             for(let j = 0; j < item_summary.length; j++){
                 try{
                     const item_id = item_summary[j].itemId;
@@ -63,12 +63,13 @@ async function getEbayData(productArray){
                     })
                     const item_data = await item_response.json();
                     const newPrice = parseFloat(item_data.price.value);
-                    let ebayAvail = item_data.estimatedAvailabilities[0].estimatedAvailabilityStatus === 'IN_STOCK';
-                    let dbAvail = productArray[i].availability;
+                    const ebayAvail = item_data.estimatedAvailabilities[0].estimatedAvailabilityStatus === 'IN_STOCK';
+                    const dbAvail = productArray[i].availability;
+                    const priceChanged = Math.abs(newPrice - Number(productArray[i].price)) > 0.001;
                     if(ebayAvail){
-                        if(!dbAvail || newPrice !== productArray[i].price){
+                        if(!dbAvail || priceChanged){
                             const newListingData = {listing_id: productArray[i].id, price: newPrice, availability: ebayAvail};
-                            listingData.add(newListingData);
+                            listingData.push(newListingData);
                         }
                         break;
                     }
@@ -83,7 +84,7 @@ async function getEbayData(productArray){
             }
             if(outOfStock === item_summary.length){
                 const newListingData = {listing_id: productArray[i].id, price: productArray[i].price, availability: false};
-                listingData.add(newListingData);
+                listingData.push(newListingData);
             }
         }
         catch(err){
@@ -92,4 +93,5 @@ async function getEbayData(productArray){
     }
     return listingData;
 }
-updateProductsFromCompany('ebay', 'medium');
+const prodArray = await db.getAllProductsFromCompanyWithDemand('ebay', 'high');
+getEbayData(prodArray).then((data) => console.log(data));
