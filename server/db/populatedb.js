@@ -15,6 +15,7 @@ const SQL = `
         id SERIAL PRIMARY KEY,
         product_name TEXT,
         product_image TEXT,
+        description TEXT,
         demand TEXT,
         category_id TEXT,
         epid TEXT,

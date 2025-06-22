@@ -23,4 +23,3 @@ async function updateAllProduct(companies) {
 }
 
 
-[{listing_id, availablility, price}]
