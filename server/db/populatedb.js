@@ -6,11 +6,10 @@ import pool from './pool.js';
 
 
 const SQL = `
-
-    TRUNCATE TABLE products;
-    TRUNCATE TABLE companies;
-    TRUNCATE TABLE listings;
-
+    TRUNCATE TABLE listings, products, companies cascade;
+    Drop table listings;
+    Drop table companies;
+    Drop table products;
     CREATE TABLE IF NOT EXISTS products (
         id SERIAL PRIMARY KEY,
         product_name TEXT,
@@ -35,22 +34,23 @@ const SQL = `
         availability BOOLEAN,
         url TEXT,
         time_updated TIMESTAMP DEFAULT NOW()
+        CONSTRAINT unique_product_company_listing UNIQUE (product_id, company_id)
     );
 
-    INSERT INTO products (product_name, product_image_url)
-    VALUES ('soda', 'soda.com');
-    INSERT INTO products (product_name, product_image_url)
-    VALUES ('water', 'water.com');
+    INSERT INTO products (product_name, product_image, demand)
+    VALUES ('switch 2', 'http://localhost:3000/logo4.jpg', 'high');
+    INSERT INTO products (product_name, product_image, demand)
+    VALUES ('water', 'http://localhost:3000/logo5.jpg', 'low');
 
     INSERT INTO companies (company_name, company_logo_url)
-    VALUES ('ebay', 'ebay.com/logo');
+    VALUES ('ebay', 'http://localhost:3000/logo2.png');
     INSERT INTO companies (company_name, company_logo_url)
-    VALUES ('best buy', 'bestbuy.com/logo');
+    VALUES ('best buy', 'http://localhost:3000/logo3.png');
 
-    INSERT INTO listings (product_id, company_id, price, availability, url, sku)
-    VALUES (1, 1, 20.99, FALSE, 'soda.com/product', 'abc');
-    INSERT INTO listings (product_id, company_id, price, availability, url, sku)
-    VALUES (1, 2, 10.99, FALSE, 'water.com/product', 'cba');
+    INSERT INTO listings (product_id, company_id, price, availability, url)
+    VALUES (1, 1, 20.99, false, 'http://ebay.com');
+    INSERT INTO listings (product_id, company_id, price, availability, url)
+    VALUES (2, 1, 10.99, true, 'http://ebay.com');
     
     CREATE OR REPLACE FUNCTION time_updated_automatically()
     RETURNS TRIGGER AS $$

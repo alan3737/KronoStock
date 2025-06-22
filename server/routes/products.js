@@ -12,6 +12,8 @@ router.get('/:id', productsController.getProductDetails)
 
 router.get('/top/:count', productsController.getTopProducts)
 
+router.get('/companies', productsController.getAllCompanies)
+
 router.get('/search/:productName', productsController.getKeyWordProductInSearch);
 
 router.get('/history/price/:id', productsController.getProductHistoryPrice)
