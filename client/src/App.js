@@ -3,31 +3,22 @@ import './App.css';
 import ProductList from './ProductList.jsx';
 import Footer from './Footer.jsx';
 import TrackedStoreList from './TrackedStoreList.jsx';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from "./pages/Layout";
+import ProductDetail from "./pages/ProductDetail";
+
 function App() {
 
 
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src="logo.svg" className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      <ProductList></ProductList>
-      <TrackedStoreList></TrackedStoreList>
-      </header>
-      
-      <Footer></Footer>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path = "/" element = {<Layout/>}>
+          <Route path = "products/:productId" element = {<ProductDetail/>}/>
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

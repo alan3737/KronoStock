@@ -1,0 +1,55 @@
+tr {
+    text-align: center;
+    height: 80px;
+}
+
+td {
+    max-height: 20px;
+    text-align: center;
+    
+}
+
+.availability button {
+    min-height:  35px;
+    min-width: 80%;
+    text-align: center;
+    border-radius: 5px;
+    border: 0px;
+    font-weight: bold;
+}
+
+.inStock {
+    background-color: rgb(41, 216, 41);
+    color: white;
+}
+
+.inStock:hover, .outOfStock:hover {
+    background-color: red;
+    color:white
+}
+
+
+
+.companyProduct {
+    border: 1px solid rgb(241, 239, 239);
+    border-radius: 10px;
+}
+
+.companyName, .companyLogo {
+    text-align: left;
+}
+
+.companyName {
+    font-size: 20px;
+}
+
+.companyLogo {
+    padding-left: 15px;
+    padding-top: 10px;
+    width: 50px;
+}
+
+.companyLogo img {
+    width: 40px;
+    height: 40px;
+}

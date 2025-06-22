@@ -4,10 +4,13 @@ import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import indexRouter from './routes/index.js';
 import productsRouter from './routes/products.js';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 
 const app = express();
-
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 // view engine setup
 
 app.use(logger('dev'));
@@ -17,6 +20,7 @@ app.use(cookieParser());
 
 app.use('/', indexRouter);
 app.use('/products', productsRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

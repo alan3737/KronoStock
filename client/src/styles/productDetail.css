@@ -1,0 +1,51 @@
+.productPage {
+    height: 100%;
+    min-width: 100%;
+    padding-top: 70px;
+    flex: 1;
+}
+
+.specificProduct {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    align-items: flex-start;
+    flex: 1;
+}
+
+.productNameImageDescription {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.productNameImageDescription img {
+    width: 20rem;
+    height: 20rem;
+}
+
+.productNameImageDescription p {
+    color:black;
+}
+
+.stockTable th {
+  vertical-align: top;
+}
+
+.stores {
+    padding-right: 40px;
+    text-align: center;
+}
+
+.tableHeaders {
+    height: auto;
+    text-align: center;
+
+}
+
+.stockTable {
+    border-collapse: collapse;
+    min-width: 50%;
+}
+
+

@@ -37,27 +37,7 @@ export async function getProductDetails(req, res) {
             return res.status(400).send("id not found");
         }
         console.log(productDetails);
-        const mainProductDetails = {
-            listingID: productDetails[0].listing_id,
-            productID: productDetails[0].product_id,
-            productName: productDetails[0].product_name,
-            productImageUrl: productDetails[0].product_image_url,
-        };
-        const companyListings = productDetails.map((row) => ({
-                companyID: row.company_id,
-                companyName: row.company_name,
-                companyLogoUrl: row.company_logo_url,
-                listingUrl: row.listing_url,
-                lastPrice: row.price,
-                timeUpdated: row.time_updated,
-                availability: row.availability
-        }));
-        const apiResponseProductDetails = {
-            ... mainProductDetails,
-            companyDetails: companyListings
-        }
-        console.log(apiResponseProductDetails);
-        res.status(200).json(apiResponseProductDetails);
+        res.status(200).json(productDetails);
     }
     catch(err) {
         console.log(err);
