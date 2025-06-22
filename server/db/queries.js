@@ -4,8 +4,10 @@ export async function getAllProductsThatStartWithKeyword(keyword){
     const result = await pool.query("SELECT id, product_name, product_image FROM products WHERE product_name ILIKE $1 ORDER BY product_name LIMIT 10", [keyword + '%']);
     return result.rows;
 }
+
+
 export async function getAllProductsFromCompanyWithDemand(companyName, demand){
-    const result = await pool.query("SELECT listings.id, listings.price, products.product_name, products.category_id, products.epid, listings.availability FROM listings JOIN products ON listings.product_id = products.id JOIN companies ON listings.company_id = companies.id WHERE companies.company_name = $1 AND products.demand = $2", [companyName, demand]);
+    const result = await pool.query("SELECT listings.id, listings.price, products.product_name, products.category_id, products.epid, listings.availability FROM listings JOIN products ON listings.product_id = products.id JOIN companies ON listings.company_id = companies.id WHERE companies.company_name ILIKE $1 AND products.demand = $2", [companyName, demand]);
     return result.rows;
 }
 
@@ -29,7 +31,7 @@ export async function getTopProducts(count) {
 
 //todo: include a mapping helper function to return consistent format
 export async function getProductDetails(id) {
-    const result = await pool.query("SELECT p.id as product_id, p.product_name, p.product_image_url, c.id as company_id, c.company_name, c.company_logo_url, l.url as listing_url, l.time_updated, l.price, l.availability, l.id as listing_id FROM listings l JOIN products p ON l.product_id = p.id JOIN companies c on l.company_id = c.id where l.product_id = $1", [id]);
+    const result = await pool.query("SELECT product_name, product_image, company_name, company_logo, time_updated, description, price, availability, url FROM listings JOIN products ON listings.product_id = products.id JOIN companies ON listings.company_id = companies.id WHERE listings.product_id = $1 ORDER BY availability DESC", [id]);
     return result.rows;
 }
 

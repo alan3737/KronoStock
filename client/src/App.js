@@ -1,14 +1,13 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Layout from "./pages/Layout"
-import './App.css';
+import Layout from "./pages/Layout";
+import ProductDetail from "./pages/ProductDetail";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path = "/" element = {<Layout/>}>
-          <Route path = "product/:productId" element = {<ProductDetail/>}/>
-          <Route path= "*" element={<NoPage />} />
+          <Route path = "products/:productId" element = {<ProductDetail/>}/>
         </Route>
       </Routes>
     </BrowserRouter>

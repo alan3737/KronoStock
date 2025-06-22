@@ -1,16 +1,19 @@
 import Searchbar from "./Searchbar";
+import '../styles/header.css'
+import {Link} from 'react-router-dom';
 
 const Header = () => {
     return (
         <div className = "header">
-            <div className = "logoAndName">
-                <img src = "/images/stopwatch.webp" alt = "Stopwatch" />
-                <p>
-                    KronoStock
-                </p>
-            </div>
+            <Link to = "/" className = "goHome">
+                <div className = "logoAndName">
+                    <img src = "/images/stopwatch.webp" alt = "Stopwatch" />
+                    <p>
+                        KronoStock.com
+                    </p>
+                </div>
+            </Link>
             <Searchbar />
-        
         </div>
     )
 }
