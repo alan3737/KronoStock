@@ -1,0 +1,27 @@
+.mainfooter {
+    
+}
+
+.row-links {
+    text-align: center;
+    list-style-type: none;
+    margin: 0;
+    padding: 12px calc((100% - 1280px) / 2 + 24px) 20px;
+    
+}
+
+.copyright {
+    font-size: .75rem;
+}
+
+li {
+    display: inline-block;
+    margin-right: 1.5rem;
+    font-size: .875rem;
+    
+}
+
+li a {
+    text-decoration: none;
+}
+
