@@ -36,7 +36,7 @@ const ProductDetail = () => {
                 </div>
                 <table className = 'stockTable'>
                     <tr className = 'tableHeaders'>
-                        <th colSpan = '2' className = 'stores'> Tracked Stores </th>
+                        <th colSpan = '2' className = 'stores'> Store </th>
                         <th> Current Price </th>
                         <th> Last Stock </th>
                         <th> Availability</th>
