@@ -1,4 +1,4 @@
-import './TrackedStore.css';
+import '../styles/TrackedStore.css';
 
 export default function TrackedStore({ store }) {
 
@@ -7,11 +7,11 @@ export default function TrackedStore({ store }) {
         <div className="tracked-store-card">
             <div>
                 <figure>
-                    <img src={store.url}></img>
+                    <img src={store.company_logo_url}></img>
                 </figure>
             </div>
             <div>
-                <p>{store.name}</p>
+                <p>{store.company_name}</p>
             </div>
 
         </div>

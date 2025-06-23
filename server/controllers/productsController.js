@@ -83,13 +83,4 @@ export async function getKeyWordProductInSearch(req, res) {
         res.status(500).send("Server Error");
     }
 }
-export async function getAllCompanies(req, res) {
-    try {
-        const companyArray = await db.getAllCompanies();
-        res.json(companyArray); 
-    }
-    catch(err){
-        console.error(err)
-        res.status(500).send("Server Error");
-    }
-}
+

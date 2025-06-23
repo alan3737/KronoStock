@@ -13,3 +13,7 @@
     flex-grow: 0;
     flex-shrink: 0;
 }
+
+h2 {
+    text-align: center;
+}

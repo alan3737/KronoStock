@@ -1,8 +1,8 @@
-import './Footer.css';
+import '../styles/Footer.css';
 
 export default function Footer() {
     return(
-        <section>
+        <section className='mainfooter'>
             <ul className="row-links">
                 <li><a href="">Home</a></li>
                 <li><a href="">Terms & Conditions</a></li>

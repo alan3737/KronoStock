@@ -1,11 +1,9 @@
-import logo from './logo.svg';
-import './App.css';
-import ProductList from './ProductList.jsx';
-import Footer from './Footer.jsx';
-import TrackedStoreList from './TrackedStoreList.jsx';
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./pages/Layout";
 import ProductDetail from "./pages/ProductDetail";
+import ProductList from "./pages/ProductList";
+import Home from "./pages/Home";
 
 function App() {
 
@@ -15,6 +13,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path = "/" element = {<Layout/>}>
+          <Route index element = { <Home/> }></Route>
           <Route path = "products/:productId" element = {<ProductDetail/>}/>
         </Route>
       </Routes>

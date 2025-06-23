@@ -1,5 +1,6 @@
 .mainfooter {
-    
+    background-color: black;
+    text-align: center;
 }
 
 .row-links {
@@ -12,6 +13,8 @@
 
 .copyright {
     font-size: .75rem;
+    color: white;
+    padding: 10px;
 }
 
 li {
@@ -23,5 +26,6 @@ li {
 
 li a {
     text-decoration: none;
+    color:white
 }
 
