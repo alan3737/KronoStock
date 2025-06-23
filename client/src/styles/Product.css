@@ -1,0 +1,14 @@
+.product-card {
+    padding: 10px;
+    text-align: center;
+    box-sizing: border-box;
+    
+}
+
+.product-card img {
+    width: 20%;
+}
+
+.product-card a {
+    text-decoration: none;
+}

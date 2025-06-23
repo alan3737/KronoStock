@@ -1,0 +1,11 @@
+.tracked-store-container {
+    text-align: center;
+}
+
+.media {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}

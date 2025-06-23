@@ -1,0 +1,23 @@
+
+.tracked-store-card {
+    display: flex;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.tracked-store-card img {
+    width: 90%;
+}
+
+.tracked-store-card figure {
+    margin: 0;
+    
+}
+
+.tracked-store-card p {
+    margin: 0;
+}
+
+.tracked-store-card > div {
+    
+}

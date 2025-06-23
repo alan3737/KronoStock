@@ -16,7 +16,7 @@ const SpecificProductFromCompany = ({product}) => {
                 {product.time_updated}
             </td>
             <td className = 'availability'>
-                <button onClick = {() => window.open(`https://${product.url}`, '_blank')} className = {product.availability ? "inStock" : "outOfStock"}>
+                <button onClick = {() => window.open(`${product.listing_url}`, '_blank')} className = {product.availability ? "inStock" : "outOfStock"}>
                     {product.availability ? "IN STOCK" : "OUT OF STOCK"}
                 </button>
             </td>

@@ -1,0 +1,19 @@
+.product-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    justify-content: flex-start;
+    gap: 16px;
+}
+
+.product-container > .product-card {
+    flex-basis: calc((100% - (4 * 16px)) / 5);
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+h2 {
+    text-align: center;
+}

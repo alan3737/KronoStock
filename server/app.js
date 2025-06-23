@@ -4,9 +4,10 @@ import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import indexRouter from './routes/index.js';
 import productsRouter from './routes/products.js';
+import companiesRouter from './routes/companies.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
-
+import cors from 'cors';
 
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
@@ -17,9 +18,10 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-
+app.use(cors());
 app.use('/', indexRouter);
 app.use('/products', productsRouter);
+app.use('/companies', companiesRouter)
 
 
 // catch 404 and forward to error handler

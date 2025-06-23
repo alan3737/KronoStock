@@ -31,7 +31,7 @@ async function getEbayToken(){
     return ebayToken;
 }
 
-async function getEbayData(productArray){
+export async function getEbayData(productArray){
     const listingData = [];
     let token;
     try{
@@ -43,6 +43,7 @@ async function getEbayData(productArray){
     }
     for(let i = 0; i < productArray.length; i++){
         try{
+            
             const result = await fetch(`https://api.ebay.com/buy/browse/v1/item_summary/search?q=${encodeURIComponent(productArray[i].product_name)}&category_ids=${productArray[i].category_id}&epid=${productArray[i].epid}&limit=5`, {
                 method: "GET",
                 headers: {
@@ -55,7 +56,8 @@ async function getEbayData(productArray){
             for(let j = 0; j < item_summary.length; j++){
                 try{
                     const item_id = item_summary[j].itemId;
-                    const item_response = await fetch(`https://api.ebay.com/buy/browse/v1/item/${item_id}`, {
+                    const item_url = `https://api.ebay.com/buy/browse/v1/item/${item_id}`
+                    const item_response = await fetch(item_url, {
                         method: "GET",
                         headers: {
                             'Authorization': `Bearer ${token}`
@@ -68,7 +70,7 @@ async function getEbayData(productArray){
                     const priceChanged = Math.abs(newPrice - Number(productArray[i].price)) > 0.001;
                     if(ebayAvail){
                         if(!dbAvail || priceChanged){
-                            const newListingData = {listing_id: productArray[i].id, price: newPrice, availability: ebayAvail};
+                            const newListingData = {product_id: productArray[i].product_id, company_id: productArray[i].company_id, price: newPrice, availability: ebayAvail, item_url};
                             listingData.push(newListingData);
                         }
                         break;
@@ -83,7 +85,7 @@ async function getEbayData(productArray){
                 }
             }
             if(outOfStock === item_summary.length){
-                const newListingData = {listing_id: productArray[i].id, price: productArray[i].price, availability: false};
+                const newListingData = {product_id: productArray[i].product_id, company_id: productArray[i].company_id, price: newPrice, availability: false};
                 listingData.push(newListingData);
             }
         }
@@ -91,7 +93,9 @@ async function getEbayData(productArray){
             console.error(`Error processing product ${productArray[i].product_name}:`, err)
         }
     }
+    console.log(listingData)
     return listingData;
 }
-const prodArray = await db.getAllProductsFromCompanyWithDemand('ebay', 'high');
-getEbayData(prodArray).then((data) => console.log(data));
+// const prodArray = await db.getAllProductsFromCompanyWithDemand('ebay', 'high');
+// getEbayData(prodArray).then((data) => console.log(data));
+
