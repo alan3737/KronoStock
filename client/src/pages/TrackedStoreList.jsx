@@ -9,13 +9,13 @@ export default function TrackedStoreList() {
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const response = await fetch('http://localhost:5000/companies');
+          const response = await fetch('companies');
         
           let data = await response.json();
           console.log(data);
           setStores(data);
         } catch (error) {
-          console.log(error('Error', error));
+          console.error('Error', error);
         }
       };
       fetchData();

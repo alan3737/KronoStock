@@ -1,6 +1,9 @@
 import cron from 'node-cron';
 import * as db from '../db/queries.js';
 import { getEbayData } from '../services/updateProducts.js';
+import dotenv from 'dotenv';
+dotenv.config();
+
 
 export async function startScheduler() {
     console.log("starting sceduler");
@@ -8,7 +11,7 @@ export async function startScheduler() {
         console.log("cron high job called");
         await updateAllProduct([
         {   
-            name: "ebay",
+            name: "eBay",
             getData : getEbayData
 
         }

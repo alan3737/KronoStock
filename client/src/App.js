@@ -2,7 +2,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./pages/Layout";
 import ProductDetail from "./pages/ProductDetail";
-import ProductList from "./pages/ProductList";
 import Home from "./pages/Home";
 
 function App() {

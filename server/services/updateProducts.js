@@ -67,10 +67,11 @@ export async function getEbayData(productArray){
                     const newPrice = parseFloat(item_data.price.value);
                     const ebayAvail = item_data.estimatedAvailabilities[0].estimatedAvailabilityStatus === 'IN_STOCK';
                     const dbAvail = productArray[i].availability;
+                    const itemWebUrl = item_data.itemWebUrl;
                     const priceChanged = Math.abs(newPrice - Number(productArray[i].price)) > 0.001;
                     if(ebayAvail){
                         if(!dbAvail || priceChanged){
-                            const newListingData = {product_id: productArray[i].product_id, company_id: productArray[i].company_id, price: newPrice, availability: ebayAvail, item_url};
+                            const newListingData = {product_id: productArray[i].product_id, company_id: productArray[i].company_id, price: newPrice, availability: ebayAvail, item_url: itemWebUrl};
                             listingData.push(newListingData);
                         }
                         break;
@@ -85,7 +86,7 @@ export async function getEbayData(productArray){
                 }
             }
             if(outOfStock === item_summary.length){
-                const newListingData = {product_id: productArray[i].product_id, company_id: productArray[i].company_id, price: newPrice, availability: false};
+                const newListingData = {product_id: productArray[i].product_id, company_id: productArray[i].company_id, price: productArray[i].price, availability: false, item_url: productArray[i].item_url};
                 listingData.push(newListingData);
             }
         }

@@ -4,7 +4,7 @@ const SpecificProductFromCompany = ({product}) => {
     return (
         <tr className = "companyProduct">
             <td className = 'companyLogo'>
-                <img src = {`/images/${product.company_logo}`}/>
+                <img src = {`/images/${product.company_logo_url}`}/>
             </td>
             <td className = 'companyName'>
                 {product.company_name}

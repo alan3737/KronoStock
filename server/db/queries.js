@@ -18,7 +18,7 @@ export async function getTopProducts(count) {
 
 //todo: include a mapping helper function to return consistent format
 export async function getProductDetails(id) {
-    const result = await pool.query("SELECT p.id as product_id, p.product_name, p.product_image, c.id as company_id, c.company_name, c.company_logo_url, l.url as listing_url, l.time_updated, l.price, l.availability, l.id as listing_id FROM listings l JOIN products p ON l.product_id = p.id JOIN companies c on l.company_id = c.id where l.product_id = $1", [id]);
+    const result = await pool.query("SELECT p.id as product_id, p.product_name, p.product_image, p.description, c.id as company_id, c.company_name, c.company_logo_url, l.url as listing_url, l.time_updated, l.price, l.availability, l.id as listing_id FROM listings l JOIN products p ON l.product_id = p.id JOIN companies c on l.company_id = c.id where l.product_id = $1", [id]);
     return result.rows;
 }
 

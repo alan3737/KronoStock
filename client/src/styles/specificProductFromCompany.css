@@ -25,7 +25,8 @@ td {
 
 .inStock:hover, .outOfStock:hover {
     background-color: red;
-    color:white
+    color:white;
+    cursor: pointer;
 }
 
 
