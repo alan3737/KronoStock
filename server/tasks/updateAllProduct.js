@@ -2,6 +2,7 @@ import cron from 'node-cron';
 import * as db from '../db/queries.js';
 import { getEbayData } from '../services/updateProducts.js';
 import dotenv from 'dotenv';
+import {clients} from '../bin/www';
 dotenv.config();
 
 
@@ -68,6 +69,11 @@ async function updateAllProduct(companies, demand) {
     console.log(placeholders);
     console.log(allValues);
     await db.updateListings(placeholders, allValues);
+    for(const client of clients){
+        if(client.readyState === WebSocket.OPEN){
+            client.send(JSON.stringify(listingData));
+        }
+    }
 }
 
 async function addProducts() {

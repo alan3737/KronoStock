@@ -8,7 +8,7 @@
 import app from '../app.js';
 import Debug from 'debug';
 import http from 'http';
-
+import WebSocket from 'ws';
 import * as scheduler from '../tasks/updateAllProduct.js';
 
 
@@ -25,7 +25,18 @@ app.set('port', port);
  */
 
 const server = http.createServer(app);
+const wss = new WebSocket.server(server);
+const clients = new Set();
 
+wss.on("connection", (ws) => {
+  console.log("Client connected");
+  clients.add(ws);
+
+  ws.on("close", () => {
+    clients.delete(ws);
+    console.log("Client disconnected");
+  });
+});
 /**
  * Listen on provided port, on all network interfaces.
  */

@@ -1,12 +1,30 @@
+import '../styles/productDetail.css'
 import {useParams} from 'react-router-dom'
 import {useEffect, useState} from 'react'
 import SpecificProductFromCompany from './SpecificProductFromCompany';
-import '../styles/productDetail.css'
+import dotenv from 'dotenv';
+dotenv.config();
 
 const ProductDetail = () => {
     const {productId} = useParams();
     const [productArray, setProductArray] = useState([]);
     useEffect(() => {
+        const socket = new WebSocket(`ws://localhost:${process.env.DB_PORT}`);
+        socket.onopen = () => console.log("Connected to WebSocket");
+        socket.onmessage = async (event) => {
+            const listingData = JSON.parse(event.data);
+            if(listingData.some(listing => listing.product_id === productId)){
+                try{
+                    const response = await fetch(`/products/${productId}`);
+                    const data = await response.json();
+                    setProductArray(data);
+                    console.log(data);
+                }
+                catch(err){
+                    console.error(err);
+                }
+            }
+        }
         const fetchData = async () => {
             try{
                 const response = await fetch(`/products/${productId}`);
@@ -20,6 +38,7 @@ const ProductDetail = () => {
             }
         }
         fetchData();
+        return () => socket.close();
     }, [productId]);
 
     if(productArray.length === 0){
